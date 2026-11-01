@@ -377,8 +377,8 @@
             ? ""
             : `${wa}${ml}<button class="act" data-print="${i.id}">${ic("doc")}${t("reqBtn")}</button><button class="act" data-paid="${i.id}">${ic("check")}${t("done")}</button>`;
         return `<tr><td><strong>${esc(i.clientName)}</strong>${i.reminders ? `<small>${t("rem", { n: i.reminders })}</small>` : ""}</td>
-      <td class="amt">${money(i.amount)}</td><td>${fmtDate(i.dueDate)}<small>${when}</small></td>
-      <td><span class="badge b-${i.st}">${t("b" + i.st)}</span></td>
+      <td class="amt" data-l="${t("thAmount")}">${money(i.amount)}</td><td data-l="${t("thDue")}"><span>${fmtDate(i.dueDate)}<small>${when}</small></span></td>
+      <td data-l="${t("thStatus")}"><span class="badge b-${i.st}">${t("b" + i.st)}</span></td>
       <td><div class="acts">${actions}<button class="act del" data-del="${i.id}" aria-label="${t("del")}">${ic("trash")}</button></div></td></tr>`;
       })
       .join("");

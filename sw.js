@@ -1,4 +1,4 @@
-const V = "ic-v4",
+const V = "ic-v5",
   FILES = [
     "./",
     "index.html",
@@ -12,7 +12,7 @@ self.addEventListener("install", (e) =>
   e.waitUntil(
     caches
       .open(V)
-      .then((c) => c.addAll(FILES))
+      .then((c) => Promise.allSettled(FILES.map((f) => c.add(f))))
       .then(() => self.skipWaiting()),
   ),
 );

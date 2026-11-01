@@ -192,7 +192,10 @@ main {
 .grid {
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+}
+.grid > * {
+  min-width: 0;
 }
 @media (min-width: 1000px) {
   .grid {
@@ -240,7 +243,7 @@ input:focus {
 }
 .row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 0.75rem;
 }
 .primary {
@@ -478,7 +481,7 @@ td small {
     gap: 1.25rem;
   }
   .row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -645,4 +648,78 @@ textarea:focus {
     font-size: 9pt;
     color: #555;
   }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+@media (max-width: 700px) {
+  .top {
+    position: static;
+  }
+  .top-in {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .tools {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+  .tools > * {
+    flex: none;
+    white-space: nowrap;
+  }
+  .card {
+    padding: 1rem;
+  }
+  .hero {
+    padding: 1.1rem;
+  }
+  table {
+    min-width: 0;
+  }
+  thead {
+    display: none;
+  }
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+  tr {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  td {
+    border: 0;
+    padding: 0.35rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  td[data-l]::before {
+    content: attr(data-l);
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  td:first-child,
+  td:last-child {
+    display: block;
+  }
+  td small {
+    text-align: end;
+  }
+}
+
+.tools select {
+  width: auto;
 }
